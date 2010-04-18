@@ -1,0 +1,5 @@
+Django Gravatar
+===============
+
+django-gravatar is a Django application that exports template tags to convert
+email addresses to Gravatar-stored avatars, as dynamically generated hyperlinks.

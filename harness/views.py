@@ -10,7 +10,7 @@ def email(request, email):
 
     params = Params()
     params.size = 120
-    params.default = 'wavatar'
+    params.default = 'http://example.com/images/example.jpg'
     params.rating = 'pg'
 
     return render_to_response('email.html',

@@ -6,7 +6,10 @@ from django import template
 from django.conf import settings
 
 
-EMAIL_RE = re.compile(r'[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}', re.IGNORECASE)
+URL_RE = re.compile(r'https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?',
+        re.IGNORECASE)
+EMAIL_RE = re.compile(r'[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}',
+        re.IGNORECASE)
 GRAVATAR_URL_PREFIX = 'http://www.gravatar.com/avatar/'
 DEFAULT_PARAMS = \
 {
@@ -76,12 +79,10 @@ class GravatarURLNode(template.Node):
             # except when the parameter key is 'd': replace with 'identicon'
             elif key == 'd':
                 if value.lower() not in ('identicon', 'monsterid', 'wavatar', '404'):
-                    # TODO: validate for URI
-                    if True:    # TODO: if not a valid URI
-                        actual_params[key] = 'identicon'
-                    else:       # TODO: valid URI, encode it
-                        # encode special chars in URI
-                        pass
+                    if not URL_RE.match(value): # if not a valid URI
+                        del actual_params[key]
+                    else:                       # valid URI, encode it
+                        actual_params[key] = urllib.quote(value)
         
         # set parameter d=identicon if missing
         try:

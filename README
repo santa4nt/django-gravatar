@@ -46,3 +46,5 @@ harness to demonstrate and/or test the app.
 
 TODO
 ====
+
+Fix support for paramater `d=<URL>`. It is a little broken right now.

@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Django-Gravatar: Email Harness</title>
+</head>
+
+<body>
+
+{% load gravatar_tags %}
+
+<h3>From URL:</h3>
+<p>
+Email: {{ email }} <br />
+Params: {{ params }} <br />
+Gravatar URL: {% gravatar_url email params %} <br />
+Image: <img src="{% gravatar_url email params %}" />
+</p><br /><br />
+
+<h3>Hard coded:</h3>
+<p>
+Email: santa.ant@me.com <br />
+Params: {{ params }} <br />
+Gravatar URL: {% gravatar_url 'santa.ant@me.com' params %} <br />
+Image: <img src="{% gravatar_url 'santa.ant@me.com' params %}" />
+</p><br /><br />
+
+</body>
+</html>

@@ -1,6 +1,5 @@
 syntax: regexp
 
-^harness/*
 .*\.DS_Store
 .*\.pyc$
 .*\.swp$

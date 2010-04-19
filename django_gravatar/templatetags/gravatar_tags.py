@@ -82,7 +82,7 @@ class GravatarURLNode(template.Node):
                     if not URL_RE.match(value): # if not a valid URI
                         del actual_params[key]
                     else:                       # valid URI, encode it
-                        actual_params[key] = urllib.quote(value)
+                        actual_params[key] = value  # urlencode will encode it later
         
         # set parameter d=identicon if missing
         try:

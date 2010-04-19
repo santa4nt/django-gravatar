@@ -48,6 +48,9 @@ class GravatarURLNode(template.Node):
         email_hash = hashlib.md5(email).hexdigest()
 
         # step 2a: build a canonized parameters dictionary
+        if not type(params).__name__ == 'dict':
+            params = params.__dict__
+
         actual_params = {}
         default_keys = DEFAULT_PARAMS.keys()
         for key, value in params.items():

@@ -35,10 +35,13 @@ class GravatarURLNode(template.Node):
             else:
                 params = {}
 
-            if EMAIL_RE.match(self.email):  # try matching an address string literal
-                email = self.email
-            else:                           # treat as a variable
+            # try matching an address string literal
+            if EMAIL_RE.match(self.email.strip()):
+                email = self.email.strip().lower().encode('utf-8')
+            # treat as a variable
+            else:
                 email = template.Variable(self.email).resolve(context)
+                email = email.strip().lower().encode('utf-8')
                 if not EMAIL_RE.match(email):
                     raise template.TemplateSyntaxError('Not a valid email address.')
         except template.VariableDoesNotExist:

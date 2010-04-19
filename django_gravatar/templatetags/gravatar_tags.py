@@ -22,12 +22,15 @@ register = template.Library()
 class GravatarURLNode(template.Node):
 
     def __init__(self, email, params):
-        self.params = template.Variable(params)
         self.email = email
+        self.params = params
 
     def render(self, context):
         try:
-            params = self.params.resolve(context)
+            if self.params:
+                params = template.Variable(self.params).resolve(context)
+            else:
+                params = {}
 
             if EMAIL_RE.match(self.email):  # try matching an address string literal
                 email = self.email
@@ -107,8 +110,12 @@ def get_gravatar_url(parser, token):
     try:
         tag_name, email, params = token.split_contents()
     except ValueError:
-        raise template.TemplateSyntaxError('%r tag requires two arguments.' %
-                token.contents.split()[0])
+        try:
+            tag_name, email = token.split_contents()
+            params = None
+        except ValueError:
+            raise template.TemplateSyntaxError('%r tag requires one or two arguments.' %
+                    token.contents.split()[0])
 
     # if email is quoted, parse as a literal string
     if email[0] in ('"', "'") or email[-1] in ('"', "'"):

@@ -18,6 +18,14 @@ Gravatar URL: {% gravatar_url email params %} <br />
 Image: <img src="{% gravatar_url email params %}" />
 </p><br /><br />
 
+<h3>From URL (optional params omitted):</h3>
+<p>
+Email: {{ email }} <br />
+Params: {{ params }} <br />
+Gravatar URL: {% gravatar_url email %} <br />
+Image: <img src="{% gravatar_url email %}" />
+</p><br /><br />
+
 <h3>Hard coded:</h3>
 <p>
 Email: santa.ant@me.com <br />

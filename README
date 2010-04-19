@@ -15,6 +15,7 @@ To load the custom tags into your template, include the following:
 Currently, this will enable the following tags:
 
     {% gravatar_url <email> <params> %}
+    {% gravatar_url <email> %}
 
 Where `<email>` is either a string variable or a string literal of an email
 address, and `<params>` is either an object or dictionary variable of the
@@ -32,6 +33,9 @@ For `size` and `rating`, when the given value is already default (i.e., 80 or
 `'g'`, respectively), it will be omitted in the generated URL parameters.
 For `default`, unless specified with any of the above string values or with a
 valid URI, the parameter `d=identicon` will always be generated.
+
+If no `<params>` argument is supplied, the defaults will be used (that is,
+omitted to rely on Gravatar's default fallback values except `d=identicon`).
 
 Example
 =======

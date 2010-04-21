@@ -44,15 +44,21 @@ Besides the `django_gravatar` directory, where the app logic is that you should
 include or point to in your project, this directory also includes a dummy project
 harness to demonstrate and/or test the app.
 
-To test the harness:
+To demonstrate the example harness:
 
     # from this directory
-    $ python harness/manage.py runserver --pythonpath='.' \
-      --settings='harness.settings'
+    $ python example/manage.py runserver --pythonpath='.' \
+      --settings='example.settings'
 
 Then browse to:
 
     http://localhost:8000/email/<some@email.address>
+
+To run unit tests (one is included with the django_gravatar app), use the 
+harness:
+
+    # from this directory
+    $ python example/manage.py test --pythonpath='.'
 
 TODO
 ====

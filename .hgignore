@@ -3,4 +3,5 @@ syntax: regexp
 .*\.DS_Store
 .*\.pyc$
 .*\.swp$
+.*\.db$
 .*~$

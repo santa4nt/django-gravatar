@@ -1,7 +1,7 @@
 # Django settings for an example harness project.
 import os.path
 
-PROJ_DIR = os.path.dirname(__file__).replace('\\', '/')
+PROJ_DIR = os.path.abspath(os.path.dirname(__file__)).replace('\\', '/')
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -12,8 +12,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = ''
-DATABASE_NAME = ''
+DATABASE_ENGINE = 'sqlite3'
+DATABASE_NAME = os.path.join(PROJ_DIR, 'example.db')
 DATABASE_USER = ''             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.

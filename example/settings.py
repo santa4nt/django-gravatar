@@ -1,4 +1,4 @@
-# Django settings for harness project.
+# Django settings for an example harness project.
 import os.path
 
 PROJ_DIR = os.path.dirname(__file__).replace('\\', '/')
@@ -73,7 +73,7 @@ MIDDLEWARE_CLASSES = (
     #'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
-ROOT_URLCONF = 'harness.urls'
+ROOT_URLCONF = 'example.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".

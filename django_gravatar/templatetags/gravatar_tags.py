@@ -6,9 +6,9 @@ from django import template
 from django.conf import settings
 
 
-URL_RE = re.compile(r'https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?',
+URL_RE = re.compile(r'^https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?',
         re.IGNORECASE)
-EMAIL_RE = re.compile(r'[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}',
+EMAIL_RE = re.compile(r'^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$',
         re.IGNORECASE)
 GRAVATAR_URL_PREFIX = 'http://www.gravatar.com/avatar/'
 DEFAULT_PARAMS = \

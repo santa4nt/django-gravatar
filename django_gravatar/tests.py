@@ -36,7 +36,7 @@ class URLTest(unittest.TestCase):
         ]
 
         # the gravatar url of valid_emails
-        gr_url = 'http://www.gravatar.com/avatar/73166d43fc3b2dc5f56669ce27984ad0?d=identicon'
+        gr_url = 'http://www.gravatar.com/avatar/73166d43fc3b2dc5f56669ce27984ad0'
 
         for email in valid_emails:
             self._assert_mapped(email, {}, gr_url)

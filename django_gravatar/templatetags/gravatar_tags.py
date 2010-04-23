@@ -16,7 +16,7 @@ DEFAULT_PARAMS = \
     # api_key:  (gravatar_key, value),
     'size':     ('s', 80),          # value is in [1,512]
     'rating':   ('r', 'g'),         # 'pg', 'r', or 'x'
-    'default':  ('d', 'identicon'), # 'monsterid', 'wavatar', '404', or escaped URI
+    'default':  ('d', ''),          # 'identicon', 'monsterid', 'wavatar', '404', or escaped URI
 }
 
 register = template.Library()
@@ -62,12 +62,6 @@ def _build_gravatar_url(email, params):
                 else:                       # valid URI, encode it
                     actual_params[key] = value  # urlencode will encode it later
     
-    # set parameter d=identicon if missing
-    try:
-        actual_params['d']
-    except KeyError:
-        actual_params['d'] = 'identicon'
-
     # step 3: encode params
     params_encode = urllib.urlencode(actual_params)
 

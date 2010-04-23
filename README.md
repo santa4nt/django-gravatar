@@ -27,15 +27,13 @@ following set of parameters:
 `('g', 'pg', 'r', 'x')`. The default is `'g'`.
 * `default` -- corresponding to Gravatar parameter `d`, the value must be in
 `('identicon', 'monsterid', 'wavatar', '404')` or a valid URI.
-The default is `'identicon'`.
+The default is nothing.
 
 For `size` and `rating`, when the given value is already default (i.e., 80 or
 `'g'`, respectively), it will be omitted in the generated URL parameters.
-For `default`, unless specified with any of the above string values or with a
-valid URI, the parameter `d=identicon` will always be generated.
 
 If no `<params>` argument is supplied, the defaults will be used (that is,
-omitted to rely on Gravatar's default fallback values except `d=identicon`).
+omitted to rely on Gravatar's default fallback values).
 
 Example
 =======

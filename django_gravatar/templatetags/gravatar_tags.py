@@ -26,6 +26,9 @@ def _build_gravatar_url(email, params):
     """Generate a Gravatar URL."""
     # step 1: get a hex hash of the email address
     email = email.strip().lower().encode('utf-8')
+    if not EMAIL_RE.match(email):
+        return ''
+
     email_hash = hashlib.md5(email).hexdigest()
 
     # step 2a: build a canonized parameters dictionary
@@ -96,16 +99,8 @@ class GravatarURLNode(template.Node):
             # treat as a variable
             else:
                 email = template.Variable(self.email).resolve(context)
-                email = email.strip().lower()
-                if not EMAIL_RE.match(email):
-                    raise template.TemplateSyntaxError('Not a valid email address.')
         except template.VariableDoesNotExist:
             return ''
-        except template.TemplateSyntaxError:
-            if settings.DEBUG:
-                raise
-            else:
-                return ''
 
         # now, we generate the gravatar url
         return _build_gravatar_url(email, params)

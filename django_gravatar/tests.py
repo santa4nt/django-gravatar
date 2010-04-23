@@ -150,6 +150,49 @@ class TemplateTest(unittest.TestCase):
 
         return t.render(c)
 
+    def testSyntax(self):
+        '''This unit test exercises the parsing of the custom template tag
+        syntax.
+        '''
+        template_tag = self.template_tag
+        base = '{%% load %s %%}' % template_tag
+
+        email = 'santa.ant@me.com'
+        render = GR_URLS[email]
+
+        valid_tags = \
+        [
+            '{% gravatar_url santa.ant@me.com %}',
+            '{% gravatar_url "santa.ant@me.com" %}',
+            "{% gravatar_url ' santa.ant@me.com     ' %}",
+        ]
+
+        invalid_tags = \
+        [
+            '{% gravatar_url %}',
+            '   {% gravatar_url %}  ',
+            '{% gravatar_url "santa.ant@me.com" params too_many_args %}     ',
+        ]
+
+        for tag in valid_tags:
+            template_string = base + tag
+            rendered = self._render_template(template_string)
+
+            self.assertEqual(rendered, render,
+                    '%s renders to %s, not %s' \
+                    % (repr(template_string), repr(rendered), repr(render)))
+
+        for tag in invalid_tags:
+            template_string = base + tag
+
+            try:
+                rendered = self._render_template(template_string)
+            except template.TemplateSyntaxError:
+                self.assertTrue(True)
+            else:
+                self.fail('%s renders to %s. It should have raised a TemplateSyntaxError.' \
+                        % (repr(template_string), repr(rendered)))
+
     def testRenderEmails(self):
         '''This unit test exercises the rendering of `{% gravatar_url <email> %}`
         tag, given literal or variable email strings.

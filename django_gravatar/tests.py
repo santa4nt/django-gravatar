@@ -158,7 +158,7 @@ class TemplateTest(unittest.TestCase):
 
         """
         template_tag = self.template_tag
-        base = '{%% load %s %%}' % template_tag
+        base = '{% load gravatar_tags %}'
 
         email = 'santa.ant@me.com'
         render = GR_URLS[email]
@@ -202,7 +202,7 @@ class TemplateTest(unittest.TestCase):
 
         """
         template_tag = self.template_tag
-        base = '{%% load %s %%}' % template_tag
+        base = '{% load gravatar_tags %}'
 
         valid_literal_emails = \
         [

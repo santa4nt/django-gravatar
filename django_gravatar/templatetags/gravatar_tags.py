@@ -23,7 +23,9 @@ register = template.Library()
 
 
 def _build_gravatar_url(email, params):
-    """Generate a Gravatar URL."""
+    """Generate a Gravatar URL.
+    
+    """
     # step 1: get a hex hash of the email address
     email = email.strip().lower().encode('utf-8')
     if not EMAIL_RE.match(email):
@@ -106,6 +108,7 @@ def get_gravatar_url(parser, token):
 
     Where <params> is an object or a dictionary (variable), and <email>
     is a string object (variable) or a string (literal).
+
     """
     try:
         tag_name, email, params = token.split_contents()

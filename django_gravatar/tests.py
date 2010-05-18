@@ -17,9 +17,10 @@ GR_URLS = \
 
 
 class URLTest(unittest.TestCase):
-    '''This test class exercises the logic of building a Gravatar URL
+    """This test class exercises the logic of building a Gravatar URL
     in gravatar_tags._build_gravatar_url function.
-    '''
+
+    """
 
     def setUp(self):
         pass
@@ -135,9 +136,10 @@ class URLTest(unittest.TestCase):
 
 
 class TemplateTest(unittest.TestCase):
-    '''This test class exercises the template rendering logic in
+    """This test class exercises the template rendering logic in
     templatetags.gravatar_tags module.
-    '''
+
+    """
 
     def setUp(self):
         self.template_tag = 'gravatar_url'
@@ -151,9 +153,10 @@ class TemplateTest(unittest.TestCase):
         return t.render(c)
 
     def testSyntax(self):
-        '''This unit test exercises the parsing of the custom template tag
+        """This unit test exercises the parsing of the custom template tag
         syntax.
-        '''
+
+        """
         template_tag = self.template_tag
         base = '{%% load %s %%}' % template_tag
 
@@ -194,9 +197,10 @@ class TemplateTest(unittest.TestCase):
                         % (repr(template_string), repr(rendered)))
 
     def testRenderEmails(self):
-        '''This unit test exercises the rendering of `{% gravatar_url <email> %}`
+        """This unit test exercises the rendering of `{% gravatar_url <email> %}`
         tag, given literal or variable email strings.
-        '''
+
+        """
         template_tag = self.template_tag
         base = '{%% load %s %%}' % template_tag
 
